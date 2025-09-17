@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niger Times - Modèle 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .slider-container { overflow: hidden; }
+        .slider-track { transition: transform 0.5s ease; }
+        .search-focus:focus { box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1); }
+        .category-filter { transition: all 0.3s ease; }
+        .category-filter:hover { background-color: #ec4899; color: white; }
+        .category-filter.active { background-color: #ec4899; color: white; }
+        .animate-fade-in { animation: fadeIn 0.6s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .pulse-effect { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <!-- Logo et Banderole -->
+            <div class="flex items-center justify-center py-4 gradient-bg rounded-b-lg">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMjAwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZWM0ODk5Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OSUdFUiBUSU1FUzwvdGV4dD4KPHRleHQgeD0iMTAwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QVVTU0kgTE9OR1VFIFFVRSBTT0lUIExBIE5VSVQsIExFIEpPVVIgQVJSSVZFUkE8L3RleHQ+Cjwvc3ZnPgo=" alt="Niger Times" class="h-16 pulse-effect">
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="py-4">
+                <div class="flex flex-wrap items-center justify-between">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Accueil</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Actualités</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Politique</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Économie</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Culture</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Sports</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Forums</a>
+                        <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition-colors">Contact</a>
+                    </div>
+                    
+                    <!-- Barre de recherche -->
+                    <div class="relative flex-1 max-w-md mx-4">
+                        <input type="text" 
+                               placeholder="Rechercher un article..." 
+                               class="w-full pl-10 pr-4 py-2 border-2 border-gray-200 rounded-full focus:border-pink-500 search-focus outline-none transition-all">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    
+                    <!-- Menu mobile -->
+                    <button class="md:hidden text-gray-700 hover:text-pink-600" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Menu mobile dropdown -->
+                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Accueil</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Actualités</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Politique</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Économie</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Culture</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Sports</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Forums</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-pink-50 rounded">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Slider des nouveautés -->
+    <section class="bg-white py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+                <i class="fas fa-fire text-pink-500 mr-2"></i>Dernières Nouvelles
+            </h2>
+            
+            <div class="slider-container relative rounded-lg overflow-hidden">
+                <div id="slider" class="slider-track flex">
+                    <!-- Slide 1 -->
+                    <div class="min-w-full relative">
+                        <div class="h-96 bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <div class="text-center text-white px-8">
+                                <h3 class="text-4xl font-bold mb-4">Développement Économique au Niger</h3>
+                                <p class="text-xl mb-6">Nouveaux projets d'infrastructure lancés dans la région</p>
+                                <button class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Lire Plus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="min-w-full relative">
+                        <div class="h-96 bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center">
+                            <div class="text-center text-white px-8">
+                                <h3 class="text-4xl font-bold mb-4">Innovation Technologique</h3>
+                                <p class="text-xl mb-6">Le Niger à l'ère du numérique : nouvelles perspectives</p>
+                                <button class="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Lire Plus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="min-w-full relative">
+                        <div class="h-96 bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
+                            <div class="text-center text-white px-8">
+                                <h3 class="text-4xl font-bold mb-4">Culture et Tradition</h3>
+                                <p class="text-xl mb-6">Célébration du patrimoine culturel nigérien</p>
+                                <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Lire Plus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contrôles du slider -->
+                <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full w-12 h-12 flex items-center justify-center transition-all">
+                    <i class="fas fa-chevron-left text-gray-700"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full w-12 h-12 flex items-center justify-center transition-all">
+                    <i class="fas fa-chevron-right text-gray-700"></i>
+                </button>
+                
+                <!-- Indicateurs -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <button onclick="currentSlide(1)" class="slide-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition-all"></button>
+                    <button onclick="currentSlide(2)" class="slide-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition-all"></button>
+                    <button onclick="currentSlide(3)" class="slide-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition-all"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtres par catégorie -->
+    <section class="bg-gray-100 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium active" onclick="filterArticles('all')">
+                    Tout
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium" onclick="filterArticles('politique')">
+                    Politique
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium" onclick="filterArticles('economie')">
+                    Économie
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium" onclick="filterArticles('culture')">
+                    Culture
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium" onclick="filterArticles('sport')">
+                    Sports
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-pink-200 text-gray-700 font-medium" onclick="filterArticles('tech')">
+                    Technologie
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grille d'articles -->
+    <main class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="politique">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-landmark text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">Politique</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-pink-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-pink-600 cursor-pointer">
+                            Réforme constitutionnelle : les enjeux pour le Niger
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Une analyse approfondie des propositions de réforme constitutionnelle et leur impact sur l'avenir démocratique du pays...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>15 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>1,234 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>23 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(1)" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="economie">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-blue-400 to-green-500 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">Économie</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-blue-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 right-4">
+                            <div class="bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                <i class="fas fa-play mr-1"></i>Vidéo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-blue-600 cursor-pointer">
+                            Croissance économique : Le Niger en progression
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Les derniers indicateurs économiques montrent une tendance positive pour l'économie nigérienne avec de nouveaux secteurs en développement...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>14 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>856 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>12 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(2)" class="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-green-600 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="culture">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                            <i class="fas fa-masks-theater text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">Culture</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-purple-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-purple-600 cursor-pointer">
+                            Festival des Arts : Célébration de la diversité culturelle
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Le festival annuel des arts met en lumière la richesse culturelle du Niger avec des spectacles traditionnels et contemporains...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>13 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>2,103 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>45 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(3)" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="sport">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                            <i class="fas fa-futbol text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">Sports</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-green-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-green-600 cursor-pointer">
+                            Victoire historique de l'équipe nationale de football
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            L'équipe nationale remporte un match crucial dans les éliminatoires, soulevant l'espoir de toute une nation...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>12 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>3,456 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>78 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(4)" class="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white py-2 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="tech">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-microchip text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-medium">Technologie</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-indigo-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 right-4">
+                            <div class="bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                <i class="fas fa-play mr-1"></i>Vidéo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-indigo-600 cursor-pointer">
+                            Révolution numérique : Le Niger connecté
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            L'expansion de la connectivité internet transforme l'économie et l'éducation dans tout le pays...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>11 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>1,789 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>34 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(5)" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="article-card card-hover bg-white rounded-lg shadow-md overflow-hidden animate-fade-in" data-category="economie">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                            <i class="fas fa-coins text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium">Économie</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="text-white hover:text-yellow-200 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-yellow-600 cursor-pointer">
+                            Secteur minier : Nouveaux investissements étrangers
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            De nouveaux partenariats internationaux promettent de développer le potentiel minier du Niger...
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-calendar mr-1"></i>10 Sept 2025</span>
+                            <span><i class="fas fa-eye mr-1"></i>967 vues</span>
+                            <span><i class="fas fa-comment mr-1"></i>18 commentaires</span>
+                        </div>
+                        <button onclick="openArticle(6)" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all font-medium">
+                            Lire l'article
+                        </button>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Bouton charger plus -->
+            <div class="text-center mt-12">
+                <button class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all">
+                    <i class="fas fa-plus mr-2"></i>Charger plus d'articles
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Section Articles Recommandés -->
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-star text-yellow-500 mr-2"></i>Recommandés pour vous
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                    <h3 class="font-bold text-lg mb-2">Articles populaires</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="block hover:text-pink-600 transition-colors">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-fire text-pink-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Innovation agricole au Niger</p>
+                                    <p class="text-xs text-gray-500">2,456 vues</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="block hover:text-pink-600 transition-colors">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-trending-up text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Éducation numérique en expansion</p>
+                                    <p class="text-xs text-gray-500">1,892 vues</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="block hover:text-pink-600 transition-colors">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-leaf text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Développement durable</p>
+                                    <p class="text-xs text-gray-500">1,634 vues</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                    <h3 class="font-bold text-lg mb-2">Commentaires récents</h3>
+                    <div class="space-y-3">
+                        <div class="border-l-4 border-pink-400 pl-3">
+                            <p class="text-sm text-gray-600">"Excellente analyse de la situation économique..."</p>
+                            <p class="text-xs text-gray-400 mt-1">Aminata M. - Il y a 2h</p>
+                        </div>
+                        <div class="border-l-4 border-blue-400 pl-3">
+                            <p class="text-sm text-gray-600">"Ces réformes sont nécessaires pour l'avenir..."</p>
+                            <p class="text-xs text-gray-400 mt-1">Ibrahim K. - Il y a 4h</p>
+                        </div>
+                        <div class="border-l-4 border-green-400 pl-3">
+                            <p class="text-sm text-gray-600">"Très intéressant, merci pour le partage..."</p>
+                            <p class="text-xs text-gray-400 mt-1">Fatima S. - Il y a 6h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                    <h3 class="font-bold text-lg mb-2">Newsletter</h3>
+                    <p class="text-sm text-gray-600 mb-4">Restez informé des dernières actualités</p>
+                    <div class="space-y-3">
+                        <input type="email" placeholder="Votre email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 outline-none">
+                        <button class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all">
+                            S'abonner
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Niger Times</h3>
+                    <p class="text-gray-400 mb-4">Votre source d'information fiable sur l'actualité nigérienne</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Catégories</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Politique</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Économie</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Culture</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Sports</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Technologie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Forums</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">À propos</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition-colors">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-envelope mr-2"></i>contact@nigertimes.com</p>
+                        <p><i class="fas fa-phone mr-2"></i>+227 XX XX XX XX</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Niamey, Niger</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Niger Times. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal d'article -->
+    <div id="articleModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-4xl mx-4 max-h-screen overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center">
+                <h2 id="modalTitle" class="text-2xl font-bold text-gray-800"></h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div id="modalContent" class="prose max-w-none">
+                    <!-- Le contenu de l'article sera inséré ici -->
+                </div>
+                
+                <!-- Section commentaires -->
+                <div class="mt-8 border-t pt-8">
+                    <h3 class="text-xl font-bold mb-4">
+                        <i class="fas fa-comments mr-2 text-pink-500"></i>Commentaires
+                    </h3>
+                    
+                    <!-- Formulaire de commentaire -->
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <textarea placeholder="Laissez votre commentaire..." class="w-full p-3 border border-gray-300 rounded-lg focus:border-pink-500 outline-none resize-none" rows="4"></textarea>
+                        <div class="flex justify-between items-center mt-3">
+                            <p class="text-sm text-gray-500">Les commentaires sont modérés</p>
+                            <button class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition-colors">
+                                Publier
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Liste des commentaires -->
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-pink-400 pl-4 py-2">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                                    A
+                                </div>
+                                <span class="font-medium">Aminata Diallo</span>
+                                <span class="text-sm text-gray-500">Il y a 2 heures</span>
+                            </div>
+                            <p class="text-gray-700">Très bon article, cela éclaire bien la situation actuelle. Merci pour cette analyse approfondie.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-400 pl-4 py-2">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                                    I
+                                </div>
+                                <span class="font-medium">Ibrahim Kassim</span>
+                                <span class="text-sm text-gray-500">Il y a 4 heures</span>
+                            </div>
+                            <p class="text-gray-700">J'espère que ces mesures auront l'impact positif escompté. L'avenir nous le dira.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Articles similaires -->
+                <div class="mt-8 border-t pt-8">
+                    <h3 class="text-xl font-bold mb-4">
+                        <i class="fas fa-newspaper mr-2 text-pink-500"></i>Articles similaires
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="#" class="flex space-x-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-chart-bar text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Analyse économique trimestrielle</h4>
+                                <p class="text-sm text-gray-500">Les chiffres clés de l'économie</p>
+                            </div>
+                        </a>
+                        <a href="#" class="flex space-x-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Politique sociale au Niger</h4>
+                                <p class="text-sm text-gray-500">Nouvelles mesures sociales</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentSlideIndex = 0;
+        const totalSlides = 3;
+        
+        // Gestion du slider
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+        
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            updateSlider();
+        }
+        
+        function updateSlider() {
+            const slider = document.getElementById('slider');
+            const translateX = -currentSlideIndex * 100;
+            slider.style.transform = `translateX(${translateX}%)`;
+            
+            // Mise à jour des indicateurs
+            const indicators = document.querySelectorAll('.slide-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlideIndex) {
+                    indicator.classList.add('bg-opacity-100');
+                    indicator.classList.remove('bg-opacity-50');
+                } else {
+                    indicator.classList.add('bg-opacity-50');
+                    indicator.classList.remove('bg-opacity-100');
+                }
+            });
+        }
+        
+        // Auto-slider
+        setInterval(nextSlide, 5000);
+        
+        // Gestion du menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Filtrage des articles
+        function filterArticles(category) {
+            const articles = document.querySelectorAll('.article-card');
+            const buttons = document.querySelectorAll('.category-filter');
+            
+            // Mise à jour des boutons
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filtrage des articles
+            articles.forEach(article => {
+                const articleCategory = article.getAttribute('data-category');
+                if (category === 'all' || articleCategory === category) {
+                    article.style.display = 'block';
+                    article.classList.add('animate-fade-in');
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+        
+        // Ouverture d'article
+        function openArticle(articleId) {
+            const modal = document.getElementById('articleModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            // Données d'exemple pour les articles
+            const articles = {
+                1: {
+                    title: "Réforme constitutionnelle : les enjeux pour le Niger",
+                    content: `
+                        <div class="mb-6">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDgwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MCkiLz4KPHN2ZyB4PSIzNTAiIHk9IjE1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPgo8cGF0aCBkPSJNMTkgM0g1QzMuOSAzIDMgMy45IDMgNVYxOUMzIDIwLjEgMy45IDIxIDUgMjFIMTlDMjAuMSAyMSAyMSAyMC4xIDIxIDE5VjVDMjEgMy45IDIwLjEgMyAxOSAzWk0xOSAxOUg1VjVIMTlWMTlaIi8+CjxwYXRoIGQ9Ik0xNiA5SDE0VjdIMTZWOVpNMTYgMTNIMTRWMTFIMTZWMTNaIi8+Cjwvc3ZnPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDAiIHgxPSIwIiB5MT0iMCIgeDI9IjgwMCIgeTI9IjQwMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRUM0ODk5Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzhCNUNGNiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Constitution" class="w-full h-64 object-cover rounded-lg">
+                        </div>
+                        <p class="text-lg leading-relaxed mb-4">
+                            Le Niger traverse une période cruciale de son histoire démocratique avec les propositions de réforme constitutionnelle actuellement en discussion. Ces changements pourraient redéfinir les fondements de notre République.
+                        </p>
+                        <h3 class="text-xl font-bold mb-3 text-pink-600">Les principaux axes de réforme</h3>
+                        <p class="mb-4">
+                            Les propositions de réforme touchent plusieurs aspects fondamentaux de la Constitution actuelle. Parmi les points les plus débattus, on trouve la question du mandat présidentiel, la répartition des pouvoirs entre les institutions, et le renforcement du rôle des collectivités territoriales.
+                        </p>
+                        <h3 class="text-xl font-bold mb-3 text-pink-600">Impact sur les institutions</h3>
+                        <p class="mb-4">
+                            Ces modifications auraient des répercussions importantes sur l'équilibre des pouvoirs au Niger. L'Assemblée nationale, la présidence de la République et le pouvoir judiciaire verraient leurs prérogatives redéfinies dans le cadre d'une gouvernance plus moderne et adaptée aux défis contemporains.
+                        </p>
+                        <h3 class="text-xl font-bold mb-3 text-pink-600">Les enjeux pour l'avenir</h3>
+                        <p class="mb-4">
+                            L'enjeu principal de ces réformes réside dans leur capacité à renforcer la démocratie nigérienne tout en préservant la stabilité institutionnelle. La participation citoyenne à ce processus de révision constitutionnelle est essentielle pour garantir la légitimité des changements proposés.
+                        </p>
+                        <div class="bg-pink-50 p-4 rounded-lg mt-6">
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-info-circle text-pink-500 mr-2"></i>
+                                Cet article fait partie d'une série d'analyses sur les réformes institutionnelles au Niger.
+                            </p>
+                        </div>
+                    `
+                },
+                2: {
+                    title: "Croissance économique : Le Niger en progression",
+                    content: `
+                        <div class="mb-6">
+                            <div class="w-full h-64 bg-gradient-to-br from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-play text-white text-6xl cursor-pointer" onclick="playVideo()"></i>
+                            </div>
+                        </div>
+                        <p class="text-lg leading-relaxed mb-4">
+                            Les dernières données économiques révèlent une tendance encourageante pour l'économie nigérienne, avec une croissance soutenue dans plusieurs secteurs clés.
+                        </p>
+                        <h3 class="text-xl font-bold mb-3 text-blue-600">Secteurs porteurs</h3>
+                        <p class="mb-4">
+                            L'agriculture, l'élevage et l'industrie minière continuent d'être les piliers de la croissance économique. Les investissements dans ces secteurs ont permis de créer de nombreux emplois et d'améliorer les conditions de vie des populations rurales.
+                        </p>
+                        <div class="bg-blue-50 p-4 rounded-lg mt-6">
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-video text-blue-500 mr-2"></i>
+                                Une vidéo explicative est disponible pour cet article.
+                            </p>
+                        </div>
+                    `
+                }
+                // Ajouter d'autres articles...
+            };
+            
+            title.textContent = articles[articleId].title;
+            content.innerHTML = articles[articleId].content;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Fermeture du modal
+        function closeModal() {
+            const modal = document.getElementById('articleModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Lecture vidéo simulée
+        function playVideo() {
+            alert('Lecture de la vidéo en cours... (Fonctionnalité à implémenter)');
+        }
+        
+        // Fermer le modal en cliquant à l'extérieur
+        document.getElementById('articleModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Recherche en temps réel
+        document.querySelector('input[placeholder="Rechercher un article..."]').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const articles = document.querySelectorAll('.article-card');
+            
+            articles.forEach(article => {
+                const title = article.querySelector('h3').textContent.toLowerCase();
+                const description = article.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = searchTerm === '' ? 'block' : 'none';
+                }
+            });
+        });
+        
+        // Animation au scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSlider();
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>

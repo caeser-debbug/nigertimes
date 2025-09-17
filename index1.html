@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niger Times - Modèle 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #e91e63, #9c27b0, #673ab7);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .slider-item {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23e91e63'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='14' font-weight='bold'%3ENT%3C/text%3E%3C/svg%3E" alt="Niger Times" class="w-10 h-10">
+                    </div>
+                    <div class="text-white">
+                        <h1 class="text-3xl font-bold">NIGER TIMES</h1>
+                        <p class="text-sm opacity-90">"Aussi longue que soit la nuit, le jour arrivera"</p>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 w-96">
+                    <input type="text" placeholder="Rechercher des articles..." class="bg-transparent text-white placeholder-white/70 flex-1 outline-none">
+                    <i class="fas fa-search text-white ml-2"></i>
+                </div>
+                
+                <!-- Menu Mobile -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="border-t border-white/20">
+            <div class="container mx-auto px-4">
+                <ul class="flex space-x-8 py-3 text-white font-medium">
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Actualités</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Politique</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Sport</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Culture</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Économie</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Slider Principal -->
+    <section class="relative bg-black">
+        <div class="slider-container overflow-hidden">
+            <div class="slider-wrapper flex" id="mainSlider">
+                <div class="slider-item relative">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='500' viewBox='0 0 1200 500'%3E%3Crect width='1200' height='500' fill='%23374151'/%3E%3Ctext x='600' y='250' text-anchor='middle' fill='white' font-size='24'%3EArticle Principal 1%3C/text%3E%3C/svg%3E" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black/40 flex items-end">
+                        <div class="container mx-auto px-4 pb-8">
+                            <div class="text-white max-w-2xl">
+                                <span class="bg-pink-600 px-3 py-1 rounded-full text-sm font-medium">Actualité</span>
+                                <h2 class="text-4xl font-bold mt-4 mb-2">Titre de l'article principal</h2>
+                                <p class="text-lg opacity-90 mb-4">Résumé de l'article qui donne envie de lire la suite...</p>
+                                <button class="bg-pink-600 hover:bg-pink-700 px-6 py-2 rounded-full transition-colors">Lire plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-item relative">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='500' viewBox='0 0 1200 500'%3E%3Crect width='1200' height='500' fill='%236b7280'/%3E%3Ctext x='600' y='250' text-anchor='middle' fill='white' font-size='24'%3EArticle Principal 2%3C/text%3E%3C/svg%3E" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black/40 flex items-end">
+                        <div class="container mx-auto px-4 pb-8">
+                            <div class="text-white max-w-2xl">
+                                <span class="bg-purple-600 px-3 py-1 rounded-full text-sm font-medium">Sport</span>
+                                <h2 class="text-4xl font-bold mt-4 mb-2">Deuxième article important</h2>
+                                <p class="text-lg opacity-90 mb-4">Description captivante du contenu de l'article...</p>
+                                <button class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Lire plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Slider -->
+        <div class="absolute bottom-4 right-4 flex space-x-2">
+            <button onclick="prevSlide()" class="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Section Articles -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Articles Récents -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold mb-8 text-gray-800">Articles Récents</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article Card -->
+                <article class="bg-white rounded-xl shadow-md card-hover overflow-hidden">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f3f4f6'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='%236b7280' font-size='16'%3EImage Article%3C/text%3E%3C/svg%3E" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-xs font-medium">Politique</span>
+                            <span class="text-gray-500 text-sm ml-auto">Il y a 2h</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800 hover:text-pink-600 transition-colors">Titre de l'article</h4>
+                        <p class="text-gray-600 mb-4">Extrait de l'article qui donne un aperçu du contenu...</p>
+                        <div class="flex items-center justify-between">
+                            <button class="text-pink-600 hover:text-pink-700 font-medium">Lire plus</button>
+                            <div class="flex space-x-2 text-gray-400">
+                                <button class="hover:text-pink-600"><i class="fas fa-heart"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-share"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-comment"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Répéter pour d'autres articles -->
+                <article class="bg-white rounded-xl shadow-md card-hover overflow-hidden">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f3f4f6'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='%236b7280' font-size='16'%3EImage Article%3C/text%3E%3C/svg%3E" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs font-medium">Économie</span>
+                            <span class="text-gray-500 text-sm ml-auto">Il y a 4h</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800 hover:text-pink-600 transition-colors">Développement économique</h4>
+                        <p class="text-gray-600 mb-4">Les dernières nouvelles concernant l'économie du Niger...</p>
+                        <div class="flex items-center justify-between">
+                            <button class="text-pink-600 hover:text-pink-700 font-medium">Lire plus</button>
+                            <div class="flex space-x-2 text-gray-400">
+                                <button class="hover:text-pink-600"><i class="fas fa-heart"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-share"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-comment"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-md card-hover overflow-hidden">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f3f4f6'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='%236b7280' font-size='16'%3EImage Article%3C/text%3E%3C/svg%3E" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-medium">Culture</span>
+                            <span class="text-gray-500 text-sm ml-auto">Il y a 6h</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800 hover:text-pink-600 transition-colors">Festival culturel</h4>
+                        <p class="text-gray-600 mb-4">Découvrez les richesses culturelles du Niger...</p>
+                        <div class="flex items-center justify-between">
+                            <button class="text-pink-600 hover:text-pink-700 font-medium">Lire plus</button>
+                            <div class="flex space-x-2 text-gray-400">
+                                <button class="hover:text-pink-600"><i class="fas fa-heart"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-share"></i></button>
+                                <button class="hover:text-pink-600"><i class="fas fa-comment"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section Vidéos -->
+        <section class="mb-12">
+            <h3 class="text-3xl font-bold mb-8 text-gray-800">Vidéos à la Une</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'%3E%3Crect width='600' height='300' fill='%23374151'/%3E%3Ccircle cx='300' cy='150' r='30' fill='white' opacity='0.8'/%3E%3Cpolygon points='290,135 290,165 315,150' fill='%23374151'/%3E%3Ctext x='300' y='200' text-anchor='middle' fill='white' font-size='14'%3EVidéo%3C/text%3E%3C/svg%3E" class="w-full h-64 object-cover">
+                        <button class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors">
+                            <div class="bg-white/90 rounded-full p-4">
+                                <i class="fas fa-play text-pink-600 text-2xl ml-1"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Titre de la vidéo</h4>
+                        <p class="text-gray-600 mb-4">Description de la vidéo qui attire l'attention...</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>12:34</span>
+                            <i class="fas fa-eye ml-4 mr-2"></i>
+                            <span>1.2k vues</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'%3E%3Crect width='600' height='300' fill='%23374151'/%3E%3Ccircle cx='300' cy='150' r='30' fill='white' opacity='0.8'/%3E%3Cpolygon points='290,135 290,165 315,150' fill='%23374151'/%3E%3Ctext x='300' y='200' text-anchor='middle' fill='white' font-size='14'%3EVidéo%3C/text%3E%3C/svg%3E" class="w-full h-64 object-cover">
+                        <button class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors">
+                            <div class="bg-white/90 rounded-full p-4">
+                                <i class="fas fa-play text-pink-600 text-2xl ml-1"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">Deuxième vidéo</h4>
+                        <p class="text-gray-600 mb-4">Autre contenu vidéo intéressant...</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>08:45</span>
+                            <i class="fas fa-eye ml-4 mr-2"></i>
+                            <span>856 vues</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bouton Charger Plus -->
+        <div class="text-center">
+            <button class="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-3 rounded-full hover:from-pink-700 hover:to-purple-700 transition-all transform hover:scale-105">
+                Charger plus d'articles
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h5 class="font-bold text-lg mb-4">Niger Times</h5>
+                    <p class="opacity-90">Votre source d'information fiable au Niger</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-4">Catégories</h5>
+                    <ul class="space-y-2 opacity-90">
+                        <li><a href="#" class="hover:text-yellow-300">Actualités</a></li>
+                        <li><a href="#" class="hover:text-yellow-300">Politique</a></li>
+                        <li><a href="#" class="hover:text-yellow-300">Sport</a></li>
+                        <li><a href="#" class="hover:text-yellow-300">Culture</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-4">Contact</h5>
+                    <ul class="space-y-2 opacity-90">
+                        <li>Email: info@nigertimes.ne</li>
+                        <li>Tél: +227 XX XX XX XX</li>
+                        <li>Niamey, Niger</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-4">Suivez-nous</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-yellow-300"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="hover:text-yellow-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="hover:text-yellow-300"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="hover:text-yellow-300"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-8 opacity-30">
+            <div class="text-center opacity-90">
+                <p>&copy; 2025 Niger Times. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-item');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            const slider = document.getElementById('mainSlider');
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-slide
+        setInterval(nextSlide, 5000);
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            // Implementation pour menu mobile
+            console.log('Toggle mobile menu');
+        }
+
+        // Smooth scrolling et autres effets
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Observer les cartes d'articles
+            document.querySelectorAll('.card-hover').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

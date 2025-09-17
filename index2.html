@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niger Times - Modèle 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .floating-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .news-ticker {
+            animation: scroll 30s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header avec Navigation Flottante -->
+    <header class="floating-nav bg-white/80 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo Moderne -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center transform rotate-12">
+                            <span class="text-white font-bold text-xl transform -rotate-12">NT</span>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold gradient-text">NIGER TIMES</h1>
+                        <p class="text-xs text-gray-600">Information • Innovation • Intégrité</p>
+                    </div>
+                </div>
+                
+                <!-- Barre de Recherche Moderne -->
+                <div class="hidden md:flex items-center bg-gray-100 rounded-full px-6 py-3 w-80 hover:bg-gray-200 transition-colors">
+                    <i class="fas fa-search text-gray-400 mr-3"></i>
+                    <input type="text" placeholder="Rechercher..." class="bg-transparent flex-1 outline-none text-gray-700">
+                    <kbd class="bg-white px-2 py-1 rounded text-xs text-gray-500">Ctrl+K</kbd>
+                </div>
+                
+                <!-- Menu Actions -->
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
+                        Newsletter
+                    </button>
+                    <button class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <i class="fas fa-bell text-gray-600"></i>
+                    </button>
+                    <button class="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Horizontale -->
+        <nav class="border-t border-gray-200">
+            <div class="container mx-auto px-6">
+                <div class="flex space-x-8 py-4 overflow-x-auto">
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-pink-600 transition-all font-medium">À la Une</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Politique</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Économie</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Sport</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Culture</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Tech</a>
+                    <a href="#" class="whitespace-nowrap text-gray-700 hover:text-pink-600 pb-2 border-b-2 border-transparent hover:border-pink-600 transition-all">Société</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Bandeau d'actualités défilantes -->
+    <div class="bg-black text-white py-2 overflow-hidden">
+        <div class="flex items-center">
+            <div class="bg-red-600 px-4 py-2 font-bold text-sm">BREAKING</div>
+            <div class="flex-1 relative">
+                <div class="news-ticker whitespace-nowrap text-sm py-2">
+                    📰 Dernières nouvelles du Niger • Actualités politiques importantes • Développements économiques • Sports et culture
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section Minimaliste -->
+    <section class="bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 text-white">
+        <div class="container mx-auto px-6 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <span class="inline-block bg-pink-500/20 text-pink-300 px-4 py-2 rounded-full text-sm font-medium">
+                            🔥 Tendance
+                        </span>
+                        <h2 class="text-5xl font-bold leading-tight">
+                            L'avenir du Niger se dessine aujourd'hui
+                        </h2>
+                        <p class="text-xl text-gray-300 leading-relaxed">
+                            Restez informé des développements qui façonnent notre nation avec des analyses approfondies et des reportages exclusifs.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all hover-scale">
+                            Lire l'article principal
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all">
+                            Voir la vidéo
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-video bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-3xl p-8 glass-morphism">
+                        <div class="w-full h-full bg-gray-800 rounded-2xl flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-play text-6xl text-pink-400 mb-4"></i>
+                                <p class="text-gray-300">Vidéo principale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Articles Principale -->
+    <main class="container mx-auto px-6 py-16">
+        <!-- Filtres et Tri -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 space-y-4 md:space-y-0">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-900 mb-2">Dernières actualités</h3>
+                <p class="text-gray-600">Restez informé avec nos articles les plus récents</p>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <select class="bg-white border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500">
+                    <option>Toutes les catégories</option>
+                    <option>Politique</option>
+                    <option>Économie</option>
+                    <option>Sport</option>
+                    <option>Culture</option>
+                </select>
+                <select class="bg-white border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500">
+                    <option>Plus récents</option>
+                    <option>Plus populaires</option>
+                    <option>Plus commentés</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grille d'Articles Moderne -->
+        <div class="article-grid mb-16">
+            <!-- Article Featured -->
+            <article class="md:col-span-2 bg-white rounded-3xl shadow-lg overflow-hidden hover-scale">
+                <div class="grid md:grid-cols-2 gap-0">
+                    <div class="relative h-64 md:h-full">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23e91e63;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%239c27b0;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23grad1)'/%3E%3Ctext x='300' y='200' text-anchor='middle' fill='white' font-size='24' font-weight='bold'%3EArticle Principal%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">Urgent</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col justify-center">
+                        <div class="space-y-4">
+                            <div class="flex items-center text-sm text-gray-500 space-x-4">
+                                <span>Politique</span>
+                                <span>•</span>
+                                <span>Il y a 2 heures</span>
+                                <span>•</span>
+                                <span>5 min de lecture</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900 leading-tight hover:text-pink-600 transition-colors">
+                                Développements politiques majeurs au Niger
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed">
+                                Une analyse approfondie des récents événements qui transforment le paysage politique nigérien et leurs implications pour l'avenir du pays.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <button class="text-pink-600 hover:text-pink-700 font-semibold">
+                                    Lire l'article →
+                                </button>
+                                <div class="flex items-center space-x-3 text-gray-400">
+                                    <button class="hover:text-pink-600 transition-colors">
+                                        <i class="fas fa-heart"></i> 24
+                                    </button>
+                                    <button class="hover:text-pink-600 transition-colors">
+                                        <i class="fas fa-comment"></i> 12
+                                    </button>
+                                    <button class="hover:text-pink-600 transition-colors">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Articles Standard -->
+            <article class="bg-white rounded-3xl shadow-lg overflow-hidden hover-scale">
+                <div class="relative h-48">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%236366f1'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='white' font-size='16'%3EÉconomie%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4">
+                        <button class="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3 space-x-2">
+                        <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Économie</span>
+                        <span>•</span>
+                        <span>Il y a 4h</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-pink-600 transition-colors">
+                        Croissance économique prometteuse
+                    </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Les derniers indicateurs économiques montrent une tendance positive pour le secteur...
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <button class="text-pink-600 hover:text-pink-700 font-semibold text-sm">
+                            Lire plus →
+                        </button>
+                        <div class="flex items-center space-x-2 text-gray-400 text-sm">
+                            <span><i class="fas fa-eye"></i> 156</span>
+                            <span><i class="fas fa-comment"></i> 8</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-3xl shadow-lg overflow-hidden hover-scale">
+                <div class="relative h-48">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%2310b981'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='white' font-size='16'%3ECulture%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <span class="bg-green-500/80 px-2 py-1 rounded-full text-xs">Culture</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3 space-x-2">
+                        <span>Il y a 6h</span>
+                        <span>•</span>
+                        <span>3 min</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-pink-600 transition-colors">
+                        Festival des arts traditionnels
+                    </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Découvrez les richesses culturelles mises à l'honneur lors de ce grand événement...
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <button class="text-pink-600 hover:text-pink-700 font-semibold text-sm">
+                            Découvrir →
+                        </button>
+                        <div class="flex items-center space-x-2 text-gray-400 text-sm">
+                            <span><i class="fas fa-heart"></i> 89</span>
+                            <span><i class="fas fa-share"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-3xl shadow-lg overflow-hidden hover-scale">
+                <div class="relative h-48">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f59e0b'/%3E%3Ctext x='200' y='125' text-anchor='middle' fill='white' font-size='16'%3ESport%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4">
+                        <div class="flex items-center bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm">
+                            <div class="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                            LIVE
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3 space-x-2">
+                        <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full">Sport</span>
+                        <span>•</span>
+                        <span>En cours</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-pink-600 transition-colors">
+                        Championnat national en cours
+                    </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Suivez en direct les résultats et analyses du championnat national de football...
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <button class="text-pink-600 hover:text-pink-700 font-semibold text-sm">
+                            Suivre →
+                        </button>
+                        <div class="flex items-center space-x-2 text-gray-400 text-sm">
+                            <span><i class="fas fa-users"></i> 234</span>
+                            <span><i class="fas fa-comment"></i> 45</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Section Vidéos -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-2xl font-bold text-gray-900">Vidéos à la Une</h3>
+                <button class="text-pink-600 hover:text-pink-700 font-semibold">Voir tout →</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="relative group cursor-pointer hover-scale">
+                    <div class="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23374151'/%3E%3Ccircle cx='200' cy='112' r='25' fill='white' opacity='0.8'/%3E%3Cpolygon points='190,102 190,122 210,112' fill='%23374151'/%3E%3C/svg%3E" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                            <div class="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-pink-600 text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm">
+                            12:45
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-gray-900 group-hover:text-pink-600 transition-colors">
+                            Interview exclusive du ministre
+                        </h4>
+                        <p class="text-gray-600 text-sm mt-1">1,2k vues • Il y a 1 jour</p>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer hover-scale">
+                    <div class="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%234b5563'/%3E%3Ccircle cx='200' cy='112' r='25' fill='white' opacity='0.8'/%3E%3Cpolygon points='190,102 190,122 210,112' fill='%234b5563'/%3E%3C/svg%3E" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                            <div class="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-pink-600 text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm">
+                            08:32
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-gray-900 group-hover:text-pink-600 transition-colors">
+                            Reportage sur l'agriculture moderne
+                        </h4>
+                        <p class="text-gray-600 text-sm mt-1">845 vues • Il y a 3 jours</p>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer hover-scale">
+                    <div class="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%235b21b6'/%3E%3Ccircle cx='200' cy='112' r='25' fill='white' opacity='0.8'/%3E%3Cpolygon points='190,102 190,122 210,112' fill='%235b21b6'/%3E%3C/svg%3E" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                            <div class="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-pink-600 text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm">
+                            15:18
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-gray-900 group-hover:text-pink-600 transition-colors">
+                            Documentaire sur les traditions
+                        </h4>
+                        <p class="text-gray-600 text-sm mt-1">2,1k vues • Il y a 5 jours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call-to-Action Newsletter -->
+        <section class="bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700 rounded-3xl p-12 text-white text-center mb-16">
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-3xl font-bold mb-4">Restez informé</h3>
+                <p class="text-lg mb-8 opacity-90">
+                    Recevez nos meilleures analyses et actualités directement dans votre boîte mail
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <input type="email" placeholder="Votre adresse email" class="px-6 py-4 rounded-full text-gray-900 flex-1 max-w-md outline-none">
+                    <button class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap">
+                        S'abonner gratuitement
+                    </button>
+                </div>
+                <p class="text-sm opacity-75 mt-4">
+                    Désabonnement possible à tout moment • Pas de spam
+                </p>
+            </div>
+        </section>
+
+        <!-- Bouton Charger Plus -->
+        <div class="text-center">
+            <button id="loadMoreBtn" class="bg-white border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-pink-500 hover:text-pink-600 transition-all hover-scale">
+                <i class="fas fa-plus mr-2"></i>
+                Charger plus d'articles
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer Moderne -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold">NT</span>
+                        </div>
+                        <span class="text-xl font-bold">Niger Times</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Votre source d'information de confiance pour tout ce qui concerne le Niger et l'Afrique de l'Ouest.
+                    </p>
+                <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg hover:bg-pink-600 transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg hover:bg-pink-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg hover:bg-pink-600 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg hover:bg-pink-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-lg mb-6">Navigation</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Actualités</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Politique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Économie</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sport</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Culture</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-lg mb-6">Services</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Newsletter</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Podcasts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Archives</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Forum</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-lg mb-6">Contact</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@nigertimes.ne</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone"></i>
+                            <span>+227 XX XX XX XX</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Niamey, Niger</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6">
+                        <h6 class="font-semibold mb-3">Applications mobiles</h6>
+                        <div class="flex space-x-3">
+                            <a href="#" class="bg-gray-800 px-3 py-2 rounded-lg text-sm hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="#" class="bg-gray-800 px-3 py-2 rounded-lg text-sm hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-google-play mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-gray-400 text-sm">
+                        <p>&copy; 2025 Niger Times. Tous droits réservés.</p>
+                    </div>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Politique de confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Conditions d'utilisation</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton de retour en haut -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            console.log('Toggle mobile menu');
+            // Implementation for mobile menu
+        }
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('opacity-100', 'visible');
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                scrollToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Load more articles
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            // Simulate loading
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Chargement...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                // Here you would load more articles
+                console.log('Loading more articles...');
+            }, 2000);
+        });
+
+        // Keyboard shortcut for search
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                const searchInput = document.querySelector('input[placeholder="Rechercher..."]');
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all hover-scale elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.hover-scale');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Sticky navigation effect
+            const header = document.querySelector('.floating-nav');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.classList.add('shadow-xl');
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                } else {
+                    header.classList.remove('shadow-xl');
+                    header.style.background = 'rgba(255, 255, 255, 0.8)';
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+
+            // Smooth reveal animation for articles
+            const articles = document.querySelectorAll('article');
+            articles.forEach((article, index) => {
+                article.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Search functionality enhancement
+        const searchInput = document.querySelector('input[placeholder="Rechercher..."]');
+        if (searchInput) {
+            let searchTimeout;
+            searchInput.addEventListener('input', function(e) {
+                clearTimeout(searchTimeout);
+                const query = e.target.value;
+                
+                if (query.length > 2) {
+                    searchTimeout = setTimeout(() => {
+                        console.log('Searching for:', query);
+                        // Implement search logic here
+                    }, 300);
+                }
+            });
+        }
+
+        // Article interaction tracking
+        document.querySelectorAll('article').forEach(article => {
+            article.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'I') {
+                    console.log('Article clicked:', this.querySelector('h3, h2')?.textContent);
+                    // Track article engagement
+                }
+            });
+        });
+
+        // Video play button functionality
+        document.querySelectorAll('.group.cursor-pointer').forEach(videoCard => {
+            videoCard.addEventListener('click', function() {
+                const title = this.querySelector('h4').textContent;
+                console.log('Playing video:', title);
+                // Implement video player modal or redirect
+            });
+        });
+
+        // Newsletter form handling
+        const newsletterForm = document.querySelector('section input[type="email"]');
+        const subscribeBtn = newsletterForm?.nextElementSibling;
+        
+        if (subscribeBtn) {
+            subscribeBtn.addEventListener('click', function() {
+                const email = newsletterForm.value;
+                if (email && email.includes('@')) {
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i>Inscrit !';
+                    this.classList.add('bg-green-500');
+                    setTimeout(() => {
+                        this.innerHTML = 'S\'abonner gratuitement';
+                        this.classList.remove('bg-green-500');
+                        newsletterForm.value = '';
+                    }, 3000);
+                }
+            });
+        }
+
+        // Like and share functionality
+        document.querySelectorAll('.fas.fa-heart').forEach(heartIcon => {
+            heartIcon.parentElement.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('text-red-500');
+                const count = this.textContent.trim().split(' ')[1];
+                if (count) {
+                    const newCount = this.classList.contains('text-red-500') ? 
+                        parseInt(count) + 1 : parseInt(count) - 1;
+                    this.innerHTML = `<i class="fas fa-heart"></i> ${newCount}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

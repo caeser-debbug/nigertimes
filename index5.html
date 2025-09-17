@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niger Times - Modèle 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .news-grid { display: grid; grid-template-areas: "featured featured sidebar" "secondary secondary sidebar" "tertiary quaternary sidebar"; }
+        @media (max-width: 768px) { .news-grid { grid-template-areas: "featured" "secondary" "tertiary" "quaternary" "sidebar"; } }
+        .featured-article { grid-area: featured; }
+        .secondary-article { grid-area: secondary; }
+        .tertiary-article { grid-area: tertiary; }
+        .quaternary-article { grid-area: quaternary; }
+        .sidebar-section { grid-area: sidebar; }
+        .breaking-news { animation: slideInRight 0.8s ease-out; }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .news-ticker { animation: scroll 30s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .card-shadow { box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .card-shadow:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.15); transform: translateY(-2px); }
+        .gradient-overlay { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); }
+        .text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.7); }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #dc2626; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .category-badge { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .weather-widget { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+        .breaking-badge { animation: pulse 2s infinite; background: linear-gradient(45deg, #dc2626, #ef4444); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+    </style>
+</head>
+<body class="bg-gray-100 font-serif">
+    <!-- Breaking News Banner -->
+    <div id="breaking-news" class="bg-red-600 text-white py-2 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center">
+                <span class="breaking-badge text-white px-3 py-1 rounded-full text-xs font-bold mr-4 flex-shrink-0">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>URGENT
+                </span>
+                <div class="news-ticker whitespace-nowrap">
+                    <span class="mr-8">📰 Nouvelle réforme constitutionnelle annoncée par le gouvernement</span>
+                    <span class="mr-8">💼 Signature d'accords économiques avec l'Union Européenne</span>
+                    <span class="mr-8">🏆 L'équipe nationale se qualifie pour les phases finales</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="bg-white shadow-lg border-b-4 border-red-600">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between py-2 text-sm border-b">
+                <div class="flex items-center space-x-4 text-gray-600">
+                    <span><i class="fas fa-calendar-alt mr-1"></i>Mercredi, 17 Septembre 2025</span>
+                    <span class="weather-widget text-white px-3 py-1 rounded-full">
+                        <i class="fas fa-sun mr-1"></i>Niamey 32°C
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Logo et Slogan -->
+            <div class="py-6 text-center border-b">
+                <h1 class="text-5xl font-bold text-gray-900 mb-2 font-serif">
+                    <span class="text-red-600">NIGER</span> 
+                    <span class="text-gray-800">TIMES</span>
+                </h1>
+                <p class="text-gray-600 italic text-lg">"Aussi longue que soit la nuit, le jour arrivera"</p>
+                <div class="flex justify-center mt-4">
+                    <div class="w-20 h-1 bg-red-600 rounded"></div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="py-4">
+                <div class="flex items-center justify-between">
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">ACCUEIL</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">POLITIQUE</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">ÉCONOMIE</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">INTERNATIONAL</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">SOCIÉTÉ</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">CULTURE</a>
+                        <a href="#" class="nav-link text-gray-800 font-semibold hover:text-red-600 px-2 py-1">SPORTS</a>
+                    </div>
+                    
+                    <!-- Recherche -->
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="text" 
+                                   placeholder="Rechercher..." 
+                                   class="border-2 border-gray-300 rounded-lg px-4 py-2 pl-10 focus:border-red-500 focus:outline-none w-64">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <button class="lg:hidden text-gray-800 hover:text-red-600" onclick="toggleMobileNav()">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Navigation -->
+                <div id="mobile-nav" class="lg:hidden hidden mt-4 bg-gray-50 rounded-lg p-4">
+                    <div class="space-y-2">
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">ACCUEIL</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">POLITIQUE</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">ÉCONOMIE</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">INTERNATIONAL</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">SOCIÉTÉ</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">CULTURE</a>
+                        <a href="#" class="block py-2 px-4 text-gray-800 hover:bg-red-50 hover:text-red-600 rounded">SPORTS</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Principales Nouvelles -->
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="news-grid gap-6 mb-12">
+                <!-- Article Principal (Featured) -->
+                <article class="featured-article card-shadow bg-white rounded-lg overflow-hidden">
+                    <div class="relative h-96">
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center">
+                            <i class="fas fa-newspaper text-white text-6xl opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 gradient-overlay"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="category-badge bg-red-600 text-white">POLITIQUE</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h2 class="text-3xl font-bold text-white mb-3 text-shadow leading-tight">
+                                Assemblée Nationale : Adoption du nouveau budget national 2026
+                            </h2>
+                            <p class="text-gray-200 mb-4 text-shadow">
+                                Les députés ont voté à l'unanimité le budget 2026, marquant une augmentation significative des investissements dans l'éducation et la santé. Cette décision historique...
+                            </p>
+                            <div class="flex items-center justify-between text-sm text-gray-300">
+                                <div class="flex items-center space-x-4">
+                                    <span><i class="fas fa-user mr-1"></i>Rédaction</span>
+                                    <span><i class="fas fa-clock mr-1"></i>Il y a 2h</span>
+                                </div>
+                                <button onclick="openArticle('featured')" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-all">
+                                    Lire Plus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Articles Secondaires -->
+                <div class="secondary-article grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <article class="card-shadow bg-white rounded-lg overflow-hidden">
+                        <div class="relative h-48">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                                <i class="fas fa-chart-line text-white text-4xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-3 left-3">
+                                <span class="category-badge bg-blue-600 text-white">ÉCONOMIE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2 hover:text-red-600 cursor-pointer transition-colors">
+                                Croissance du PIB : Le Niger affiche de bons résultats
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Les derniers chiffres officiels montrent une croissance économique de 5.2% au troisième trimestre...
+                            </p>
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span><i class="fas fa-eye mr-1"></i>1,247 lectures</span>
+                                <span><i class="fas fa-comments mr-1"></i>23 commentaires</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card-shadow bg-white rounded-lg overflow-hidden">
+                        <div class="relative h-48">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                                <i class="fas fa-seedling text-white text-4xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-3 left-3">
+                                <span class="category-badge bg-green-600 text-white">AGRICULTURE</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <div class="bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                    <i class="fas fa-video mr-1"></i>Vidéo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2 hover:text-red-600 cursor-pointer transition-colors">
+                                Programme d'irrigation : 50,000 hectares bénéficient
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Le nouveau système d'irrigation moderne transforme l'agriculture dans les régions de Tillabéry et Dosso...
+                            </p>
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span><i class="fas fa-eye mr-1"></i>856 lectures</span>
+                                <span><i class="fas fa-comments mr-1"></i>12 commentaires</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Articles Tertiaires -->
+                <article class="tertiary-article card-shadow bg-white rounded-lg overflow-hidden">
+                    <div class="flex">
+                        <div class="w-1/3">
+                            <div class="h-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-3xl opacity-50"></i>
+                            </div>
+                        </div>
+                        <div class="w-2/3 p-4">
+                            <div class="mb-2">
+                                <span class="category-badge bg-purple-600 text-white">ÉDUCATION</span>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 hover:text-red-600 cursor-pointer transition-colors">
+                                Nouvelle université technologique inaugurée à Maradi
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Cette infrastructure moderne accueillera 5,000 étudiants dès la rentrée prochaine...
+                            </p>
+                            <div class="flex items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 4h</span>
+                                <span class="mx-2">•</span>
+                                <span><i class="fas fa-eye mr-1"></i>634 lectures</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="quaternary-article card-shadow bg-white rounded-lg overflow-hidden">
+                    <div class="flex">
+                        <div class="w-1/3">
+                            <div class="h-full bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
+                                <i class="fas fa-futbol text-white text-3xl opacity-50"></i>
+                            </div>
+                        </div>
+                        <div class="w-2/3 p-4">
+                            <div class="mb-2">
+                                <span class="category-badge bg-yellow-600 text-white">SPORTS</span>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 hover:text-red-600 cursor-pointer transition-colors">
+                                Championnat national : Finale historique au stade Seyni Kountché
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                Plus de 35,000 spectateurs attendus pour ce match décisif qui couronnera le champion 2025...
+                            </p>
+                            <div class="flex items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 6h</span>
+                                <span class="mx-2">•</span>
+                                <span><i class="fas fa-eye mr-1"></i>2,134 lectures</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="sidebar-section space-y-6">
+                    <!-- Trending -->
+                    <div class="card-shadow bg-white rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 border-b-2 border-red-600 pb-2">
+                            <i class="fas fa-fire text-red-600 mr-2"></i>Tendances
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</span>
+                                <div>
+                                    <a href="#" class="font-semibold hover:text-red-600 transition-colors text-sm">
+                                        Réforme du système de santé publique
+                                    </a>
+                                    <p class="text-xs text-gray-500 mt-1">12,345 vues</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-gray-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
+                                <div>
+                                    <a href="#" class="font-semibold hover:text-red-600 transition-colors text-sm">
+                                        Partenariat énergétique avec l'Allemagne
+                                    </a>
+                                    <p class="text-xs text-gray-500 mt-1">9,876 vues</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-yellow-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                                <div>
+                                    <a href="#" class="font-semibold hover:text-red-600 transition-colors text-sm">
+                                        Festival culturel de la Francophonie
+                                    </a>
+                                    <p class="text-xs text-gray-500 mt-1">7,432 vues</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="card-shadow bg-red-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 text-red-800">
+                            <i class="fas fa-envelope text-red-600 mr-2"></i>Newsletter
+                        </h3>
+                        <p class="text-gray-700 mb-4 text-sm">
+                            Recevez les dernières actualités directement dans votre boîte mail.
+                        </p>
+                        <div class="space-y-3">
+                            <input type="email" 
+                                   placeholder="votre.email@exemple.com" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none text-sm">
+                            <button class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                                S'ABONNER
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">
+                            <i class="fas fa-shield-alt mr-1"></i>Vos données sont protégées
+                        </p>
+                    </div>
+
+                    <!-- Publicité -->
+                    <div class="card-shadow bg-gray-200 rounded-lg p-6 text-center">
+                        <p class="text-gray-500 text-sm mb-2">PUBLICITÉ</p>
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-48 rounded-lg flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <i class="fas fa-ad text-4xl mb-2"></i>
+                                <p class="text-sm">Espace publicitaire</p>
+                                <p class="text-xs opacity-75">300x200px</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Archives -->
+                    <div class="card-shadow bg-white rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 border-b-2 border-red-600 pb-2">
+                            <i class="fas fa-archive text-red-600 mr-2"></i>Archives
+                        </h3>
+                        <div class="space-y-2">
+                            <a href="#" class="block hover:text-red-600 transition-colors text-sm py-1">
+                                <i class="fas fa-chevron-right mr-2 text-xs text-gray-400"></i>Septembre 2025 (47)
+                            </a>
+                            <a href="#" class="block hover:text-red-600 transition-colors text-sm py-1">
+                                <i class="fas fa-chevron-right mr-2 text-xs text-gray-400"></i>Août 2025 (52)
+                            </a>
+                            <a href="#" class="block hover:text-red-600 transition-colors text-sm py-1">
+                                <i class="fas fa-chevron-right mr-2 text-xs text-gray-400"></i>Juillet 2025 (64)
+                            </a>
+                            <a href="#" class="block hover:text-red-600 transition-colors text-sm py-1">
+                                <i class="fas fa-chevron-right mr-2 text-xs text-gray-400"></i>Juin 2025 (38)
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Section Articles par Catégorie -->
+            <section class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-gray-900">
+                        <i class="fas fa-list-alt text-red-600 mr-2"></i>Par Catégorie
+                    </h2>
+                    <div class="flex space-x-2">
+                        <button onclick="filterByCategory('all')" class="category-btn px-4 py-2 border-2 border-red-200 rounded-lg hover:bg-red-600 hover:text-white transition-all font-semibold text-sm active">
+                            TOUTES
+                        </button>
+                        <button onclick="filterByCategory('politique')" class="category-btn px-4 py-2 border-2 border-red-200 rounded-lg hover:bg-red-600 hover:text-white transition-all font-semibold text-sm">
+                            POLITIQUE
+                        </button>
+                        <button onclick="filterByCategory('economie')" class="category-btn px-4 py-2 border-2 border-red-200 rounded-lg hover:bg-red-600 hover:text-white transition-all font-semibold text-sm">
+                            ÉCONOMIE
+                        </button>
+                        <button onclick="filterByCategory('societe')" class="category-btn px-4 py-2 border-2 border-red-200 rounded-lg hover:bg-red-600 hover:text-white transition-all font-semibold text-sm">
+                            SOCIÉTÉ
+                        </button>
+                    </div>
+                </div>
+
+                <div id="category-articles" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Article 1 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="politique">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
+                                <i class="fas fa-gavel text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-red-600 text-white">POLITIQUE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Nouvelle loi sur la décentralisation administrative
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Le gouvernement propose une réforme majeure du système administratif local...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 1h</span>
+                                <span><i class="fas fa-eye mr-1"></i>342</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="economie">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
+                                <i class="fas fa-coins text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-blue-600 text-white">ÉCONOMIE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Augmentation des exportations d'uranium de 15%
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Les revenus miniers contribuent significativement au budget national...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 3h</span>
+                                <span><i class="fas fa-eye mr-1"></i>567</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="societe">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                                <i class="fas fa-users text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-green-600 text-white">SOCIÉTÉ</span>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <div class="bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                    <i class="fas fa-video mr-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Campagne de vaccination : 2 millions d'enfants vaccinés
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Programme de santé publique atteignant des résultats remarquables...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 5h</span>
+                                <span><i class="fas fa-eye mr-1"></i>891</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="politique">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+                                <i class="fas fa-balance-scale text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-purple-600 text-white">POLITIQUE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Réforme judiciaire : nouvelles mesures annoncées
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Le ministre de la Justice présente un plan de modernisation du système judiciaire...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 7h</span>
+                                <span><i class="fas fa-eye mr-1"></i>445</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="economie">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
+                                <i class="fas fa-industry text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-yellow-600 text-white">ÉCONOMIE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Nouvelle zone industrielle inaugurée à Zinder
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Cette infrastructure moderne créera plus de 2000 emplois directs...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 8h</span>
+                                <span><i class="fas fa-eye mr-1"></i>723</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="societe">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center">
+                                <i class="fas fa-heart text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-pink-600 text-white">SOCIÉTÉ</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Programme d'aide aux familles vulnérables étendu
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Le gouvernement augmente les allocations sociales de 25%...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 9h</span>
+                                <span><i class="fas fa-eye mr-1"></i>1,156</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 7 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="economie">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-truck text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-teal-600 text-white">ÉCONOMIE</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Modernisation du réseau routier : 500 km réhabilités
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                Les travaux d'infrastructure facilitent le commerce transfrontalier...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 12h</span>
+                                <span><i class="fas fa-eye mr-1"></i>634</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 8 -->
+                    <article class="article-item card-shadow bg-white rounded-lg overflow-hidden" data-category="societe">
+                        <div class="relative h-32">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-school text-white text-2xl opacity-50"></i>
+                            </div>
+                            <div class="absolute top-2 left-2">
+                                <span class="category-badge bg-indigo-600 text-white">SOCIÉTÉ</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm hover:text-red-600 cursor-pointer transition-colors">
+                                Rentrée scolaire : 150 nouvelles écoles ouvertes
+                            </h4>
+                            <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                L'éducation nationale annonce une capacité d'accueil augmentée...
+                            </p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="fas fa-clock mr-1"></i>Il y a 15h</span>
+                                <span><i class="fas fa-eye mr-1"></i>987</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8">
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="px-3 py-2 bg-red-600 text-white rounded-lg">1</button>
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors">2</button>
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors">3</button>
+                        <span class="px-2">...</span>
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors">15</button>
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Opinion/Éditoriaux -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-red-600 pb-2">
+                    <i class="fas fa-pen-fancy text-red-600 mr-2"></i>Opinions & Éditoriaux
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <article class="card-shadow bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">
+                                AK
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-sm">Amadou Kané</h4>
+                                <p class="text-xs text-gray-500">Journaliste politique</p>
+                            </div>
+                        </div>
+                        <h3 class="font-bold mb-3 hover:text-red-600 cursor-pointer transition-colors">
+                            "L'avenir démocratique du Niger en question"
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Dans un contexte géopolitique complexe, le Niger doit naviguer entre stabilité interne et pressions externes...
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span><i class="fas fa-calendar mr-1"></i>16 Sept 2025</span>
+                            <button class="text-red-600 hover:text-red-800 transition-colors font-semibold">
+                                LIRE L'OPINION
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="card-shadow bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                FM
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-sm">Fatima Mahamane</h4>
+                                <p class="text-xs text-gray-500">Économiste</p>
+                            </div>
+                        </div>
+                        <h3 class="font-bold mb-3 hover:text-red-600 cursor-pointer transition-colors">
+                            "Diversification économique : une nécessité"
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            La dépendance excessive aux ressources minières expose notre économie à des risques importants...
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span><i class="fas fa-calendar mr-1"></i>15 Sept 2025</span>
+                            <button class="text-red-600 hover:text-red-800 transition-colors font-semibold">
+                                LIRE L'OPINION
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="card-shadow bg-white rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                IB
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-bold text-sm">Ibrahim Boubacar</h4>
+                                <p class="text-xs text-gray-500">Sociologue</p>
+                            </div>
+                        </div>
+                        <h3 class="font-bold mb-3 hover:text-red-600 cursor-pointer transition-colors">
+                            "Jeunesse et emploi : les défis du Niger"
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Avec 60% de la population âgée de moins de 25 ans, l'emploi des jeunes est un enjeu crucial...
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <span><i class="fas fa-calendar mr-1"></i>14 Sept 2025</span>
+                            <button class="text-red-600 hover:text-red-800 transition-colors font-semibold">
+                                LIRE L'OPINION
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <!-- Footer Principal -->
+            <div class="py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- À propos -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span class="text-red-500">NIGER</span> TIMES
+                        </h3>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            Niger Times est votre source d'information de référence pour l'actualité nigérienne et internationale.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                                <i class="fab fa-facebook text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                                <i class="fab fa-twitter text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                                <i class="fab fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rubriques -->
+                    <div>
+                        <h4 class="font-bold mb-4 text-lg">RUBRIQUES</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Politique</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Économie</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">International</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Société</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Culture</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Sports</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div>
+                        <h4 class="font-bold mb-4 text-lg">SERVICES</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Forums de discussion</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Newsletter</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Archives</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">RSS</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Application mobile</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Alerte news</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Légal -->
+                    <div>
+                        <h4 class="font-bold mb-4 text-lg">CONTACT</h4>
+                        <div class="space-y-2 text-sm text-gray-400">
+                            <p><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>BP 1234, Niamey, Niger</p>
+                            <p><i class="fas fa-phone mr-2 text-red-500"></i>+227 20 XX XX XX</p>
+                            <p><i class="fas fa-envelope mr-2 text-red-500"></i>redaction@nigertimes.ne</p>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="font-semibold mb-2">LÉGAL</h5>
+                            <ul class="space-y-1 text-xs text-gray-400">
+                                <li><a href="#" class="hover:text-red-400 transition-colors">Mentions légales</a></li>
+                                <li><a href="#" class="hover:text-red-400 transition-colors">Politique de confidentialité</a></li>
+                                <li><a href="#" class="hover:text-red-400 transition-colors">Conditions d'utilisation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bas -->
+            <div class="border-t border-gray-800 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                    <p>&copy; 2025 Niger Times. Tous droits réservés.</p>
+                    <p>Dernière mise à jour : Mercredi 17 Septembre 2025, 14:30</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal d'Article -->
+    <div id="articleModal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
+            <!-- Header du Modal -->
+            <div class="sticky top-0 bg-white border-b-2 border-red-600 p-6 flex justify-between items-center">
+                <div>
+                    <h2 id="modalTitle" class="text-2xl font-bold text-gray-900"></h2>
+                    <div id="modalMeta" class="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                        <span><i class="fas fa-user mr-1"></i>Rédaction</span>
+                        <span><i class="fas fa-calendar mr-1"></i>17 Sept 2025</span>
+                        <span><i class="fas fa-eye mr-1"></i>1,247 vues</span>
+                    </div>
+                </div>
+                <button onclick="closeArticleModal()" class="text-gray-500 hover:text-red-600 text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Contenu de l'Article -->
+            <div class="p-6">
+                <div id="modalContent" class="prose max-w-none">
+                    <!-- Le contenu sera injecté ici -->
+                </div>
+
+                <!-- Actions de l'Article -->
+                <div class="flex items-center space-x-4 mt-8 pt-6 border-t">
+                    <button class="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fas fa-heart"></i>
+                        <span>J'aime (45)</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fas fa-share"></i>
+                        <span>Partager</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Sauvegarder</span>
+                    </button>
+                </div>
+
+                <!-- Section Commentaires -->
+                <div class="mt-8 border-t pt-8">
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-comments text-red-600 mr-2"></i>
+                        Commentaires (12)
+                    </h3>
+
+                    <!-- Formulaire de Commentaire -->
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <textarea placeholder="Partagez votre opinion sur cet article..." 
+                                  class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none resize-none" 
+                                  rows="4"></textarea>
+                        <div class="flex justify-between items-center mt-3">
+                            <p class="text-sm text-gray-500">
+                                <i class="fas fa-shield-alt mr-1"></i>
+                                Les commentaires sont modérés selon notre charte
+                            </p>
+                            <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                                PUBLIER
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Liste des Commentaires -->
+                    <div class="space-y-6">
+                        <div class="flex space-x-4">
+                            <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">
+                                A
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h5 class="font-semibold">Aminata Diallo</h5>
+                                        <span class="text-xs text-gray-500">Il y a 2 heures</span>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Excellente analyse de la situation. Cet article met bien en perspective les enjeux actuels. 
+                                        J'espère que nos dirigeants prendront ces recommandations au sérieux.
+                                    </p>
+                                </div>
+                                <div class="flex items-center space-x-4 mt-2 ml-4">
+                                    <button class="text-sm text-gray-500 hover:text-red-600 transition-colors">
+                                        <i class="fas fa-thumbs-up mr-1"></i>Utile (3)
+                                    </button>
+                                    <button class="text-sm text-gray-500 hover:text-red-600 transition-colors">
+                                        Répondre
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                I
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h5 class="font-semibold">Ibrahim Kassim</h5>
+                                        <span class="text-xs text-gray-500">Il y a 4 heures</span>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Merci pour cet article informatif. Il serait intéressant d'avoir plus de détails 
+                                        sur les implications à long terme de ces mesures.
+                                    </p>
+                                </div>
+                                <div class="flex items-center space-x-4 mt-2 ml-4">
+                                    <button class="text-sm text-gray-500 hover:text-red-600 transition-colors">
+                                        <i class="fas fa-thumbs-up mr-1"></i>Utile (1)
+                                    </button>
+                                    <button class="text-sm text-gray-500 hover:text-red-600 transition-colors">
+                                        Répondre
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charger plus de commentaires -->
+                    <div class="text-center mt-6">
+                        <button class="text-red-600 hover:text-red-800 font-semibold transition-colors">
+                            <i class="fas fa-chevron-down mr-2"></i>Voir plus de commentaires
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Articles Connexes -->
+                <div class="mt-8 border-t pt-8">
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-newspaper text-red-600 mr-2"></i>
+                        Articles connexes
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <a href="#" class="flex space-x-4 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                            <div class="w-20 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-chart-bar text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Analyse budgétaire : Les priorités 2026</h4>
+                                <p class="text-sm text-gray-500">Les grandes orientations du budget national...</p>
+                                <span class="text-xs text-gray-400">Il y a 1 jour</span>
+                            </div>
+                        </a>
+                        <a href="#" class="flex space-x-4 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                            <div class="w-20 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-users text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Réaction des partis politiques</h4>
+                                <p class="text-sm text-gray-500">Les différentes formations politiques réagissent...</p>
+                                <span class="text-xs text-gray-400">Il y a 2 jours</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentBreakingIndex = 0;
+        const breakingNews = [
+            "📰 Nouvelle réforme constitutionnelle annoncée par le gouvernement",
+            "💼 Signature d'accords économiques avec l'Union Européenne", 
+            "🏆 L'équipe nationale se qualifie pour les phases finales"
+        ];
+
+        // Gestion du menu mobile
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('hidden');
+        }
+
+        // Filtrage des articles par catégorie
+        function filterByCategory(category) {
+            const articles = document.querySelectorAll('.article-item');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // Mise à jour des boutons
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-red-600', 'text-white');
+                btn.classList.add('border-red-200', 'hover:bg-red-600', 'hover:text-white');
+            });
+            
+            // Activer le bouton sélectionné
+            event.target.classList.add('active', 'bg-red-600', 'text-white');
+            event.target.classList.remove('border-red-200', 'hover:bg-red-600', 'hover:text-white');
+            
+            // Filtrer les articles
+            articles.forEach(article => {
+                const articleCategory = article.getAttribute('data-category');
+                if (category === 'all' || articleCategory === category) {
+                    article.style.display = 'block';
+                    article.style.animation = 'fadeIn 0.5s ease-in-out';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Ouverture du modal d'article
+        function openArticle(articleId) {
+            const modal = document.getElementById('articleModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            // Données d'exemple pour les articles
+            const articles = {
+                'featured': {
+                    title: "Assemblée Nationale : Adoption du nouveau budget national 2026",
+                    content: `
+                        <div class="mb-6">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDgwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MCkiLz4KPHN2ZyB4PSIzNTAiIHk9IjE1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPgo8cGF0aCBkPSJNMTkgM0g1QzMuOSAzIDMgMy45IDMgNVYxOUMzIDIwLjEgMy45IDIxIDUgMjFIMTlDMjAuMSAyMSAyMSAyMC4xIDIxIDE5VjVDMjEgMy45IDIwLjEgMyAxOSAzWk0xOSAxOUg1VjVIMTlWMTlaIi8+CjxwYXRoIGQ9Ik0xNiA5SDE0VjdIMTZWOVpNMTYgMTNIMTRWMTFIMTZWMTNaIi8+Cjwvc3ZnPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDAiIHgxPSIwIiB5MT0iMCIgeDI9IjgwMCIgeTI9IjQwMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjREMyNjI2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0VBNTgwQyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Assemblée Nationale" class="w-full h-64 object-cover rounded-lg">
+                        </div>
+                        
+                        <div class="bg-red-50 border-l-4 border-red-600 p-4 mb-6">
+                            <p class="text-red-800 font-semibold">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Article mis à jour le 17 septembre 2025 à 14h30
+                            </p>
+                        </div>
+
+                        <p class="text-lg leading-relaxed mb-6 font-serif">
+                            Dans une session extraordinaire qui restera dans les annales, l'Assemblée nationale du Niger a adopté à l'unanimité le projet de budget national pour l'exercice 2026, marquant un tournant historique dans la gestion des finances publiques du pays.
+                        </p>
+
+                        <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">
+                            Un budget ambitieux de 3 200 milliards de FCFA
+                        </h3>
+                        
+                        <p class="mb-4 text-justify">
+                            Le budget 2026, d'un montant global de 3 200 milliards de francs CFA, représente une augmentation de 12% par rapport à l'exercice précédent. Cette progression témoigne de la volonté du gouvernement d'accélérer le développement socio-économique du Niger.
+                        </p>
+
+                        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                            <h4 class="font-bold mb-3 text-gray-800">
+                                <i class="fas fa-chart-pie text-red-600 mr-2"></i>
+                                Répartition des priorités budgétaires :
+                            </h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><i class="fas fa-graduation-cap text-blue-600 mr-2"></i><strong>Éducation :</strong> 25% du budget total</li>
+                                <li><i class="fas fa-heartbeat text-green-600 mr-2"></i><strong>Santé :</strong> 18% du budget total</li>
+                                <li><i class="fas fa-road text-yellow-600 mr-2"></i><strong>Infrastructures :</strong> 20% du budget total</li>
+                                <li><i class="fas fa-shield-alt text-purple-600 mr-2"></i><strong>Sécurité et défense :</strong> 15% du budget total</li>
+                                <li><i class="fas fa-seedling text-green-500 mr-2"></i><strong>Agriculture :</strong> 12% du budget total</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">
+                            L'éducation au cœur des priorités
+                        </h3>
+                        
+                        <p class="mb-4 text-justify">
+                            Avec 25% du budget national alloué à l'éducation, le Niger confirme son engagement pour la formation de sa jeunesse. Cette enveloppe permettra la construction de 500 nouvelles salles de classe, le recrutement de 3 000 enseignants et la généralisation de l'enseignement numérique dans les établissements secondaires.
+                        </p>
+
+                        <blockquote class="border-l-4 border-red-600 pl-4 py-2 mb-6 bg-red-50 italic">
+                            <p class="text-gray-700 mb-2">
+                                "Ce budget traduit notre vision d'un Niger prospère et éduqué. L'investissement massif dans l'éducation et la santé jette les bases d'un développement durable."
+                            </p>
+                            <footer class="text-sm text-gray-600">
+                                - Ministre des Finances et du Budget
+                            </footer>
+                        </blockquote>
+
+                        <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">
+                            Renforcement du système de santé
+                        </h3>
+                        
+                        <p class="mb-4 text-justify">
+                            Le secteur de la santé bénéficie d'une allocation de 576 milliards de FCFA, soit une augmentation de 30% par rapport à 2025. Cette enveloppe financera la construction de 50 centres de santé intégrés, l'acquisition d'équipements médicaux modernes et le renforcement des programmes de vaccination.
+                        </p>
+
+                        <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">
+                            Réactions politiques
+                        </h3>
+                        
+                        <p class="mb-4 text-justify">
+                            L'adoption unanime du budget a été saluée par l'ensemble de la classe politique. Les députés de l'opposition ont particulièrement apprécié l'accent mis sur les secteurs sociaux, tandis que la majorité présidentielle y voit la concrétisation des promesses de campagne.
+                        </p>
+
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                            <h4 class="font-bold text-blue-800 mb-2">
+                                <i class="fas fa-lightbulb mr-2"></i>
+                                Impact attendu
+                            </h4>
+                            <p class="text-blue-700 text-sm">
+                                Les experts économiques prévoient que ce budget pourrait contribuer à une croissance du PIB de 6,5% en 2026, créer plus de 50 000 emplois directs et indirects, et améliorer significativement les indicateurs sociaux du pays.
+                            </p>
+                        </div>
+
+                        <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">
+                            Défis et perspectives
+                        </h3>
+                        
+                        <p class="mb-4 text-justify">
+                            Malgré cet optimisme, des défis subsistent. La mobilisation des ressources, notamment fiscales, et l'efficacité dans l'exécution des projets seront déterminantes pour le succès de ce budget ambitieux.
+                        </p>
+
+                        <p class="text-justify font-serif text-lg text-gray-700">
+                            L'adoption de ce budget marque une étape importante dans la trajectoire de développement du Niger. Son succès dépendra désormais de la capacité des institutions à transformer ces ambitions en réalisations concrètes pour le bien-être des populations.
+                        </p>
+
+                        <div class="mt-8 p-4 bg-gray-50 rounded-lg border-t-4 border-red-600">
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-user-edit mr-2"></i>
+                                <strong>À propos de cet article :</strong> Rédigé par l'équipe politique de Niger Times avec le concours de nos correspondants parlementaires. Sources : Assemblée nationale du Niger, Ministère des Finances.
+                            </p>
+                        </div>
+                    `
+                }
+            };
+            
+            if (articles[articleId]) {
+                title.textContent = articles[articleId].title;
+                content.innerHTML = articles[articleId].content;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Fermeture du modal
+        function closeArticleModal() {
+            const modal = document.getElementById('articleModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Recherche en temps réel
+        function setupSearch() {
+            const searchInput = document.querySelector('input[placeholder="Rechercher..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const articles = document.querySelectorAll('.article-item, .featured-article, .secondary-article article, .tertiary-article, .quaternary-article');
+                    
+                    articles.forEach(article => {
+                        const title = article.querySelector('h2, h3, h4');
+                        const description = article.querySelector('p');
+                        
+                        if (title && description) {
+                            const titleText = title.textContent.toLowerCase();
+                            const descText = description.textContent.toLowerCase();
+                            
+                            if (titleText.includes(searchTerm) || descText.includes(searchTerm) || searchTerm === '') {
+                                article.style.display = 'block';
+                                article.style.opacity = '1';
+                            } else {
+                                article.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+        }
+
+        // Animation du breaking news
+        function animateBreakingNews() {
+            const ticker = document.querySelector('.news-ticker');
+            if (ticker) {
+                ticker.style.animation = 'none';
+                ticker.offsetHeight; // Trigger reflow
+                ticker.style.animation = 'scroll 30s linear infinite';
+            }
+        }
+
+        // Gestion des clics sur les articles
+        function setupArticleClicks() {
+            // Articles avec hover effects
+            document.querySelectorAll('.card-shadow').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Clic sur les titres d'articles
+            document.querySelectorAll('h3[class*="hover:text-red-600"], h4[class*="hover:text-red-600"]').forEach(title => {
+                title.addEventListener('click', function() {
+                    openArticle('featured'); // Pour cet exemple, on ouvre toujours le même article
+                });
+            });
+        }
+
+        // Gestion de l'auto-refresh des breaking news
+        function rotateBreakingNews() {
+            const ticker = document.querySelector('.news-ticker');
+            if (ticker && breakingNews.length > 1) {
+                setInterval(() => {
+                    currentBreakingIndex = (currentBreakingIndex + 1) % breakingNews.length;
+                    ticker.innerHTML = breakingNews.map((news, index) => 
+                        `<span class="mr-8">${news}</span>`
+                    ).join('');
+                }, 10000); // Change toutes les 10 secondes
+            }
+        }
+
+        // Fermer le modal en cliquant à l'extérieur
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('articleModal');
+            if (e.target === modal) {
+                closeArticleModal();
+            }
+        });
+
+        // Gestion du scroll pour les effets visuels
+        function handleScroll() {
+            const scrolled = window.scrollY;
+            const breakingBanner = document.getElementById('breaking-news');
+            
+            if (scrolled > 100 && breakingBanner) {
+                breakingBanner.style.transform = 'translateY(-100%)';
+                breakingBanner.style.transition = 'transform 0.3s ease';
+            } else if (breakingBanner) {
+                breakingBanner.style.transform = 'translateY(0)';
+            }
+        }
+
+        // Animation au chargement de la page
+        function animateOnLoad() {
+            // Fade in des articles
+            document.querySelectorAll('.card-shadow').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Gestion des likes et interactions
+        function setupInteractions() {
+            document.addEventListener('click', function(e) {
+                // Gestion des likes
+                if (e.target.closest('button[class*="fa-heart"]')) {
+                    const heartBtn = e.target.closest('button');
+                    const icon = heartBtn.querySelector('i');
+                    
+                    if (icon.classList.contains('fas')) {
+                        icon.classList.remove('fas', 'text-red-500');
+                        icon.classList.add('far', 'text-gray-400');
+                    } else {
+                        icon.classList.remove('far', 'text-gray-400');
+                        icon.classList.add('fas', 'text-red-500');
+                    }
+                }
+                
+                // Gestion des partages
+                if (e.target.closest('button[class*="fa-share"]')) {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Niger Times',
+                            text: 'Découvrez cet article sur Niger Times',
+                            url: window.location.href,
+                        });
+                    } else {
+                        // Fallback pour les navigateurs qui ne supportent pas l'API Web Share
+                        const url = window.location.href;
+                        navigator.clipboard.writeText(url);
+                        
+                        // Notification temporaire
+                        const notification = document.createElement('div');
+                        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                        notification.textContent = 'Lien copié dans le presse-papier !';
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    }
+                }
+            });
+        }
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            setupSearch();
+            setupArticleClicks();
+            animateBreakingNews();
+            rotateBreakingNews();
+            animateOnLoad();
+            setupInteractions();
+            
+            // Activer le premier bouton de filtre
+            const firstFilterBtn = document.querySelector('.category-btn');
+            if (firstFilterBtn) {
+                firstFilterBtn.classList.add('active', 'bg-red-600', 'text-white');
+            }
+        });
+
+        // Gestion du scroll
+        window.addEventListener('scroll', handleScroll);
+
+        // Gestion du redimensionnement de la fenêtre
+        window.addEventListener('resize', function() {
+            // Réorganiser les éléments responsive si nécessaire
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.hidden').forEach(el => {
+                    if (el.id !== 'mobile-nav') {
+                        el.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+
+        // Fonctions utilitaires
+        function formatDate(date) {
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function formatViews(views) {
+            if (views >= 1000000) {
+                return Math.floor(views / 1000000) + 'M';
+            } else if (views >= 1000) {
+                return Math.floor(views / 1000) + 'K';
+            }
+            return views.toString();
+        }
+
+        // Simulation de données en temps réel
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // Mise à jour aléatoire du nombre de vues
+                document.querySelectorAll('[class*="fa-eye"]').forEach(eyeIcon => {
+                    const parent = eyeIcon.closest('span, div');
+                    if (parent && parent.textContent.includes('vues')) {
+                        const currentViews = parseInt(parent.textContent.replace(/\D/g, ''));
+                        const newViews = currentViews + Math.floor(Math.random() * 5) + 1;
+                        parent.innerHTML = `<i class="fas fa-eye mr-1"></i>${formatViews(newViews)} vues`;
+                    }
+                });
+            }, 30000); // Mise à jour toutes les 30 secondes
+        }
+
+        // Lancement de la simulation après le chargement
+        setTimeout(simulateRealTimeUpdates, 5000);
+
+        console.log('Niger Times - Modèle 2 initialisé avec succès! 📰');
+    </script>
+</body>
+</html>
